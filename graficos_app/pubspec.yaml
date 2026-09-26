@@ -1,5 +1,5 @@
 name: graficos_app
-description: "A new Flutter project."
+description: "Taller de gráficos en Flutter: 20 ejemplos con fl_chart, Syncfusion, graphic y community_charts usando datos de dummyjson.com."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

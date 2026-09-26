@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
 
-import '../data/api_service.dart';
+import '../models/models.dart';
+import '../theme/palette.dart';
 import '../widgets/chart_card.dart';
 
 /// Librería 3: graphic (Gramática de gráficos) — gráficos 11 a 15.
@@ -20,8 +21,7 @@ class GraphicPage extends StatelessWidget {
         {'idx': '${i + 1}', 'rating': data.products[i].rating},
     ];
     final pointRows = [
-      for (final p in data.products)
-        {'stock': p.stock, 'discount': p.discount},
+      for (final p in data.products) {'stock': p.stock, 'discount': p.discount},
     ];
 
     return ListView(
@@ -31,8 +31,7 @@ class GraphicPage extends StatelessWidget {
           number: 11,
           title: 'Barras horizontales: cantidad por categoría',
           advanced: false,
-          observation:
-              'La orientación horizontal facilita leer nombres largos de categorías.',
+          observation: 'La orientación horizontal facilita leer nombres largos de categorías.',
           child: Chart(
             data: catRows,
             variables: {
@@ -46,7 +45,8 @@ class GraphicPage extends StatelessWidget {
               IntervalMark(
                 color: ColorEncode(variable: 'cat', values: palette),
                 label: LabelEncode(
-                    encoder: (t) => Label(t['count'].toString())),
+                  encoder: (t) => Label(t['count'].toString()),
+                ),
               ),
             ],
             coord: RectCoord(transposed: true),
@@ -59,8 +59,7 @@ class GraphicPage extends StatelessWidget {
           number: 12,
           title: 'Línea suave + área: rating de 20 productos',
           advanced: false,
-          observation:
-              'La curva suavizada muestra la tendencia de calificaciones; la mayoría supera 3.5.',
+          observation: 'La curva suavizada muestra la tendencia de calificaciones; la mayoría supera 3.5.',
           child: Chart(
             data: prodRows,
             variables: {
@@ -93,8 +92,7 @@ class GraphicPage extends StatelessWidget {
           number: 13,
           title: 'Puntos: stock vs % descuento',
           advanced: false,
-          observation:
-              'Los puntos dispersos indican que el descuento no depende del nivel de inventario.',
+          observation: 'Los puntos dispersos indican que el descuento no depende del nivel de inventario.',
           child: Chart(
             data: pointRows,
             variables: {
@@ -122,8 +120,7 @@ class GraphicPage extends StatelessWidget {
           number: 14,
           title: 'Rosa de Nightingale: precio promedio por categoría',
           advanced: true,
-          observation:
-              'Gráfico polar donde el radio de cada pétalo codifica el precio; útil para datos cíclicos o categóricos.',
+          observation: 'Gráfico polar donde el radio de cada pétalo codifica el precio; útil para datos cíclicos o categóricos.',
           height: 320,
           child: Chart(
             data: catRows,
@@ -138,8 +135,11 @@ class GraphicPage extends StatelessWidget {
               IntervalMark(
                 color: ColorEncode(variable: 'cat', values: palette),
                 label: LabelEncode(
-                    encoder: (t) => Label(t['cat'].toString(),
-                        LabelStyle(textStyle: const TextStyle(fontSize: 9)))),
+                  encoder: (t) => Label(
+                    t['cat'].toString(),
+                    LabelStyle(textStyle: const TextStyle(fontSize: 9)),
+                  ),
+                ),
                 elevation: ElevationEncode(value: 3),
               ),
             ],
@@ -152,8 +152,7 @@ class GraphicPage extends StatelessWidget {
           number: 15,
           title: 'Mapa de calor: productos por categoría y rango de rating',
           advanced: true,
-          observation:
-              'La intensidad del color indica cuántos productos caen en cada celda categoría × rango de rating.',
+          observation: 'La intensidad del color indica cuántos productos caen en cada celda categoría × rango de rating.',
           height: 320,
           child: _heatmap(),
         ),
@@ -166,10 +165,10 @@ class GraphicPage extends StatelessWidget {
     String bucket(double r) => r < 3.5
         ? buckets[0]
         : r < 4
-            ? buckets[1]
-            : r < 4.5
-                ? buckets[2]
-                : buckets[3];
+        ? buckets[1]
+        : r < 4.5
+        ? buckets[2]
+        : buckets[3];
     final cats = data.top(6);
     final rows = <Map<String, dynamic>>[];
     for (final c in cats) {

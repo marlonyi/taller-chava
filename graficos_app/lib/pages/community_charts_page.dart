@@ -1,10 +1,13 @@
-﻿import 'package:community_charts_flutter/community_charts_flutter.dart' as charts;
+import 'package:community_charts_flutter/community_charts_flutter.dart'
+    as charts;
 import 'package:flutter/material.dart';
 
-import '../data/api_service.dart';
+import '../models/models.dart';
+import '../theme/palette.dart';
 import '../widgets/chart_card.dart';
 
-charts.Color _c(int i) => charts.ColorUtil.fromDartColor(palette[i % palette.length]);
+charts.Color _c(int i) =>
+    charts.ColorUtil.fromDartColor(palette[i % palette.length]);
 
 /// Librería 4: community_charts_flutter — gráficos 16 a 20.
 class CommunityChartsPage extends StatelessWidget {
@@ -24,8 +27,7 @@ class CommunityChartsPage extends StatelessWidget {
           number: 16,
           title: 'Barras agrupadas: rating vs descuento promedio',
           advanced: false,
-          observation:
-              'Agrupar dos series por categoría permite comparar dos medidas lado a lado.',
+          observation: 'Agrupar dos series por categoría permite comparar dos medidas lado a lado.',
           child: charts.BarChart(
             [
               charts.Series<CategoryStat, String>(
@@ -54,8 +56,7 @@ class CommunityChartsPage extends StatelessWidget {
           number: 17,
           title: 'Línea con puntos: stock de 20 productos',
           advanced: false,
-          observation:
-              'Los marcadores resaltan cada observación; se ven productos con inventario muy bajo.',
+          observation: 'Los marcadores resaltan cada observación; se ven productos con inventario muy bajo.',
           child: charts.LineChart(
             [
               charts.Series<Product, int>(
@@ -76,8 +77,7 @@ class CommunityChartsPage extends StatelessWidget {
           number: 18,
           title: 'Dona: cantidad de productos por categoría',
           advanced: false,
-          observation:
-              'Las etiquetas externas identifican cada porción sin necesidad de leyenda.',
+          observation: 'Las etiquetas externas identifican cada porción sin necesidad de leyenda.',
           child: charts.PieChart<String>(
             [
               charts.Series<CategoryStat, String>(
@@ -94,7 +94,8 @@ class CommunityChartsPage extends StatelessWidget {
               arcWidth: 50,
               arcRendererDecorators: [
                 charts.ArcLabelDecorator<String>(
-                    labelPosition: charts.ArcLabelPosition.outside),
+                  labelPosition: charts.ArcLabelPosition.outside,
+                ),
               ],
             ),
           ),
@@ -105,8 +106,7 @@ class CommunityChartsPage extends StatelessWidget {
           number: 19,
           title: 'Combinado: cantidad (barras) + descuento % (línea)',
           advanced: true,
-          observation:
-              'OrdinalComboChart mezcla renderizadores distintos sobre el mismo eje de categorías.',
+          observation: 'OrdinalComboChart mezcla renderizadores distintos sobre el mismo eje de categorías.',
           child: charts.OrdinalComboChart(
             [
               charts.Series<CategoryStat, String>(
@@ -126,10 +126,13 @@ class CommunityChartsPage extends StatelessWidget {
             ],
             animate: true,
             defaultRenderer: charts.BarRendererConfig(
-                groupingType: charts.BarGroupingType.grouped),
+              groupingType: charts.BarGroupingType.grouped,
+            ),
             customSeriesRenderers: [
               charts.LineRendererConfig(
-                  customRendererId: 'linea', includePoints: true),
+                customRendererId: 'linea',
+                includePoints: true,
+              ),
             ],
             behaviors: [charts.SeriesLegend()],
           ),
@@ -140,8 +143,7 @@ class CommunityChartsPage extends StatelessWidget {
           number: 20,
           title: 'Barras apiladas horizontales: rating alto vs bajo',
           advanced: true,
-          observation:
-              'Cada barra suma el total de la categoría y se divide en productos con rating ≥ 4.5 y < 4.5.',
+          observation: 'Cada barra suma el total de la categoría y se divide en productos con rating ≥ 4.5 y < 4.5.',
           child: charts.BarChart(
             [
               charts.Series<CategoryStat, String>(

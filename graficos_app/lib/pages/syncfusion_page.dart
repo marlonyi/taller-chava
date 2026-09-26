@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../data/api_service.dart';
+import '../models/models.dart';
+import '../theme/palette.dart';
 import '../widgets/chart_card.dart';
 
 /// Librería 2: syncfusion_flutter_charts — gráficos 6 a 10.
@@ -22,8 +23,7 @@ class SyncfusionPage extends StatelessWidget {
           number: 6,
           title: 'Columnas: precio promedio por categoría',
           advanced: false,
-          observation:
-              'Las etiquetas de datos muestran el valor exacto; se identifica la categoría más costosa.',
+          observation: 'Las etiquetas de datos muestran el valor exacto; se identifica la categoría más costosa.',
           child: SfCartesianChart(
             primaryXAxis: const CategoryAxis(labelRotation: -35),
             tooltipBehavior: TooltipBehavior(enable: true),
@@ -32,10 +32,13 @@ class SyncfusionPage extends StatelessWidget {
                 name: 'Precio promedio',
                 dataSource: top6,
                 xValueMapper: (c, _) => c.shortName,
-                yValueMapper: (c, _) => double.parse(c.avgPrice.toStringAsFixed(1)),
+                yValueMapper: (c, _) =>
+                    double.parse(c.avgPrice.toStringAsFixed(1)),
                 pointColorMapper: (c, i) => palette[i % palette.length],
                 dataLabelSettings: const DataLabelSettings(isVisible: true),
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(6)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(6),
+                ),
               ),
             ],
           ),
@@ -46,8 +49,7 @@ class SyncfusionPage extends StatelessWidget {
           number: 7,
           title: 'Área: % de descuento de 20 productos',
           advanced: false,
-          observation:
-              'El área rellena resalta el volumen de descuento acumulado y sus variaciones entre productos.',
+          observation: 'El área rellena resalta el volumen de descuento acumulado y sus variaciones entre productos.',
           child: SfCartesianChart(
             primaryXAxis: const NumericAxis(interval: 2),
             series: <CartesianSeries<Product, int>>[
@@ -68,10 +70,12 @@ class SyncfusionPage extends StatelessWidget {
           number: 8,
           title: 'Dona: distribución del stock',
           advanced: false,
-          observation:
-              'El hueco central libera espacio y la leyenda interactiva permite ocultar categorías.',
+          observation: 'El hueco central libera espacio y la leyenda interactiva permite ocultar categorías.',
           child: SfCircularChart(
-            legend: const Legend(isVisible: true, position: LegendPosition.right),
+            legend: const Legend(
+              isVisible: true,
+              position: LegendPosition.right,
+            ),
             series: <CircularSeries<CategoryStat, String>>[
               DoughnutSeries<CategoryStat, String>(
                 dataSource: top5,
@@ -90,12 +94,13 @@ class SyncfusionPage extends StatelessWidget {
           number: 9,
           title: 'Barras radiales: rating promedio (máx. 5)',
           advanced: true,
-          observation:
-              'Cada anillo es una categoría; el recorrido del arco indica qué tan cerca está de la calificación perfecta.',
+          observation: 'Cada anillo es una categoría; el recorrido del arco indica qué tan cerca está de la calificación perfecta.',
           child: SfCircularChart(
             legend: const Legend(
-                isVisible: true, position: LegendPosition.right,
-                overflowMode: LegendItemOverflowMode.wrap),
+              isVisible: true,
+              position: LegendPosition.right,
+              overflowMode: LegendItemOverflowMode.wrap,
+            ),
             tooltipBehavior: TooltipBehavior(enable: true),
             series: <CircularSeries<CategoryStat, String>>[
               RadialBarSeries<CategoryStat, String>(
@@ -106,7 +111,8 @@ class SyncfusionPage extends StatelessWidget {
                 cornerStyle: CornerStyle.bothCurve,
                 trackOpacity: 0.15,
                 xValueMapper: (c, _) => c.name,
-                yValueMapper: (c, _) => double.parse(c.avgRating.toStringAsFixed(2)),
+                yValueMapper: (c, _) =>
+                    double.parse(c.avgRating.toStringAsFixed(2)),
                 pointColorMapper: (c, i) => palette[i],
                 dataLabelSettings: const DataLabelSettings(isVisible: true),
               ),
@@ -119,13 +125,18 @@ class SyncfusionPage extends StatelessWidget {
           number: 10,
           title: 'Combinado: stock (columnas) + rating (spline) con doble eje',
           advanced: true,
-          observation:
-              'Usa eje secundario, zoom con pellizco y trackball; se aprecia que más stock no implica mejor rating.',
+          observation: 'Usa eje secundario, zoom con pellizco y trackball; se aprecia que más stock no implica mejor rating.',
           height: 320,
           child: SfCartesianChart(
-            legend: const Legend(isVisible: true, position: LegendPosition.bottom),
+            legend: const Legend(
+              isVisible: true,
+              position: LegendPosition.bottom,
+            ),
             zoomPanBehavior: ZoomPanBehavior(
-                enablePinching: true, enablePanning: true, zoomMode: ZoomMode.x),
+              enablePinching: true,
+              enablePanning: true,
+              zoomMode: ZoomMode.x,
+            ),
             trackballBehavior: TrackballBehavior(
               enable: true,
               activationMode: ActivationMode.singleTap,
