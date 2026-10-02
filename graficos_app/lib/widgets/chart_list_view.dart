@@ -46,6 +46,9 @@ class _ChartListViewState extends State<ChartListView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final width = MediaQuery.sizeOf(context).width;
+    final isMobile = width < 640;
+
     final basicCount = widget.items.where((i) => !i.advanced).length;
     final advCount = widget.items.where((i) => i.advanced).length;
     final filtered = _filteredItems;
@@ -53,20 +56,29 @@ class _ChartListViewState extends State<ChartListView> {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+          padding: EdgeInsets.fromLTRB(
+            isMobile ? 10 : 16,
+            isMobile ? 8 : 12,
+            isMobile ? 10 : 16,
+            isMobile ? 6 : 8,
+          ),
           color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Buscador rápido
+              // Buscador rápido adaptado
               TextField(
                 controller: _searchController,
+                style: TextStyle(fontSize: isMobile ? 13 : 14),
                 decoration: InputDecoration(
-                  hintText: 'Buscar en ${widget.libraryName} por #, título o métrica...',
-                  prefixIcon: const Icon(Icons.search, size: 20),
+                  hintText: isMobile
+                      ? 'Buscar en ${widget.libraryName} (#, título)...'
+                      : 'Buscar en ${widget.libraryName} por #, título o métrica...',
+                  hintStyle: TextStyle(fontSize: isMobile ? 12 : 13),
+                  prefixIcon: Icon(Icons.search, size: isMobile ? 18 : 20),
                   suffixIcon: _query.isNotEmpty
                       ? IconButton(
-                          icon: const Icon(Icons.clear, size: 18),
+                          icon: Icon(Icons.clear, size: isMobile ? 16 : 18),
                           onPressed: () {
                             _searchController.clear();
                             setState(() => _query = '');
@@ -74,39 +86,57 @@ class _ChartListViewState extends State<ChartListView> {
                         )
                       : null,
                   isDense: true,
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: isMobile ? 8 : 10,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 onChanged: (val) => setState(() => _query = val.trim()),
               ),
-              const SizedBox(height: 8),
-              // Segmented / Filter Chips
+              SizedBox(height: isMobile ? 6 : 8),
+              // Segmented / Filter Chips con densidad compacta
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
                 child: Row(
                   children: [
                     FilterChip(
                       selected: _filter == ChartFilter.all,
-                      label: Text('Todas (${widget.items.length})'),
+                      visualDensity: VisualDensity.compact,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      label: Text(
+                        'Todas (${widget.items.length})',
+                        style: TextStyle(fontSize: isMobile ? 11 : 12),
+                      ),
                       onSelected: (_) =>
                           setState(() => _filter = ChartFilter.all),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 6),
                     FilterChip(
                       selected: _filter == ChartFilter.basic,
-                      label: Text('Básicas ($basicCount)'),
-                      avatar: const Icon(Icons.auto_graph, size: 16),
+                      visualDensity: VisualDensity.compact,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      label: Text(
+                        'Básicas ($basicCount)',
+                        style: TextStyle(fontSize: isMobile ? 11 : 12),
+                      ),
+                      avatar: Icon(Icons.auto_graph, size: isMobile ? 14 : 16),
                       onSelected: (_) =>
                           setState(() => _filter = ChartFilter.basic),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 6),
                     FilterChip(
                       selected: _filter == ChartFilter.advanced,
-                      label: Text('Avanzadas ($advCount)'),
-                      avatar: const Icon(Icons.insights, size: 16),
+                      visualDensity: VisualDensity.compact,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      label: Text(
+                        'Avanzadas ($advCount)',
+                        style: TextStyle(fontSize: isMobile ? 11 : 12),
+                      ),
+                      avatar: Icon(Icons.insights, size: isMobile ? 14 : 16),
                       onSelected: (_) =>
                           setState(() => _filter = ChartFilter.advanced),
                     ),
@@ -119,14 +149,20 @@ class _ChartListViewState extends State<ChartListView> {
         // Barra informativa de conteo
         Container(
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          padding: EdgeInsets.symmetric(
+            horizontal: isMobile ? 12 : 16,
+            vertical: isMobile ? 4 : 6,
+          ),
           color: theme.colorScheme.surfaceContainerLowest,
           child: Text(
             'Mostrando ${filtered.length} de ${widget.items.length} gráficos en ${widget.libraryName}',
-            style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey.shade700),
+            style: theme.textTheme.bodySmall?.copyWith(
+              fontSize: isMobile ? 11 : 12,
+              color: Colors.grey.shade700,
+            ),
           ),
         ),
-        // Lista optimizada
+        // Lista optimizada con rebote fluido
         Expanded(
           child: filtered.isEmpty
               ? Center(
@@ -135,13 +171,15 @@ class _ChartListViewState extends State<ChartListView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.search_off, size: 48, color: Colors.grey.shade400),
-                        const SizedBox(height: 12),
+                        Icon(Icons.search_off, size: 44, color: Colors.grey.shade400),
+                        const SizedBox(height: 10),
                         Text(
                           'No se encontraron gráficos con el filtro actual.',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: Colors.grey.shade600,
+                            fontSize: 13,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
@@ -149,6 +187,9 @@ class _ChartListViewState extends State<ChartListView> {
                 )
               : ListView.builder(
                   key: ValueKey('${widget.libraryName}_${_filter.name}_$_query'),
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
+                  ),
                   itemCount: filtered.length,
                   itemBuilder: (context, index) =>
                       filtered[index].buildCard(context),
