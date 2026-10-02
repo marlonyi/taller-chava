@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../models/models.dart';
 import '../services/api_service.dart';
-import 'community_charts_page.dart';
-import 'fl_chart_page.dart';
-import 'graphic_page.dart';
-import 'syncfusion_page.dart';
+import 'community_charts/community_charts_page.dart';
+import 'fl_chart/fl_chart_page.dart';
+import 'graphic/graphic_page.dart';
+import 'syncfusion/syncfusion_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       length: _tabs.length,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Gráficos en Flutter · 20 ejemplos'),
+          title: const Text('Gráficos en Flutter · 260 ejemplos'),
           actions: [
             IconButton(
               icon: const Icon(Icons.refresh),

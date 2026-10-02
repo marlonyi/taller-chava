@@ -2,7 +2,7 @@
 
 # 📊 graficos_app
 
-### Taller de gráficos en Flutter · 20 ejemplos con 4 librerías
+### Taller de gráficos en Flutter · 260 ejemplos con 4 librerías
 
 Visualización de datos reales de la API pública **DummyJSON** usando
 `fl_chart`, `Syncfusion`, `graphic` y `community_charts`.
@@ -12,11 +12,11 @@ Visualización de datos reales de la API pública **DummyJSON** usando
 ![Flutter](https://img.shields.io/badge/Flutter-3.29-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-3-0175C2?style=for-the-badge&logo=dart&logoColor=white)
 ![Material 3](https://img.shields.io/badge/Material-3-757575?style=for-the-badge&logo=materialdesign&logoColor=white)
-![Tests](https://img.shields.io/badge/tests-4%20passing-10B981?style=for-the-badge&logo=checkmarx&logoColor=white)
+![Tests](https://img.shields.io/badge/tests-8%20passing-10B981?style=for-the-badge&logo=checkmarx&logoColor=white)
 
-![Gráficos](https://img.shields.io/badge/gráficos-20-3B82F6?style=flat-square)
-![Básicos](https://img.shields.io/badge/básicos-12-F97316?style=flat-square)
-![Avanzados](https://img.shields.io/badge/avanzados-8-8B5CF6?style=flat-square)
+![Gráficos](https://img.shields.io/badge/gráficos-260-3B82F6?style=flat-square)
+![Básicos](https://img.shields.io/badge/básicos-160-F97316?style=flat-square)
+![Avanzados](https://img.shields.io/badge/avanzados-100-8B5CF6?style=flat-square)
 ![API](https://img.shields.io/badge/API-DummyJSON-E11D48?style=flat-square)
 
 </div>
@@ -38,12 +38,14 @@ Visualización de datos reales de la API pública **DummyJSON** usando
 
 | | |
 |---|---|
-| 🌐 **Datos reales** | Consume [`dummyjson.com/products?limit=100`](https://dummyjson.com/products?limit=100) (100 productos). |
-| 📈 **20 gráficos** | Línea, barras, pastel, radar, dispersión, área, dona, barras radiales, apiladas y más. |
-| 🗃️ **Agregación** | Estadísticas por categoría: cantidad, precio y rating promedio, stock total, descuento. |
-| 🔁 **Recarga** | Botón en la barra superior para volver a consultar la API. |
-| 🧩 **Arquitectura por capas** | Modelos, servicios, tema, widgets y páginas separados. |
-| ✅ **Pruebas unitarias** | Modelos, agregación y `ApiService` con un cliente HTTP simulado. |
+| 🌐 **Datos reales** | Consume [`dummyjson.com/products?limit=100`](https://dummyjson.com/products?limit=100) (100 productos con precios, stock, descuentos, ratings y categorías). |
+| 📈 **260 gráficos en total** | **65 gráficos por librería**: exactamente **40 básicos** y **25 avanzados** en cada una de las 4 librerías en formato nativo 2D limpio. |
+| 🔍 **Buscador y filtros interactivos** | Filtros instantáneos por nivel (Todas, Básicas, Avanzadas) y caja de búsqueda por # de gráfica, título o métrica. |
+| ⚡ **Virtualización optimizada** | Renderizado perezoso (`ListView.builder` con evaluación diferida) para máximo rendimiento y desplazamiento suave a 60 FPS. |
+| 🗃️ **Agregación avanzada** | Estadísticas multivariables: stock, valor monetario en bodega, precios min/max, percentiles, bandas de precios/rating/descuento. |
+| 🔁 **Recarga en vivo** | Botón en AppBar para refrescar los datos directamente desde la API REST. |
+| 🧩 **Arquitectura modular** | Separación por módulos (`basic` y `advanced` organizados por librería, modelos puros, servicios inyectables). |
+| ✅ **Pruebas unitarias** | Cobertura completa de modelos, agregaciones, llamadas HTTP simuladas y validación de los 260 gráficos únicos. |
 
 ---
 
@@ -51,12 +53,13 @@ Visualización de datos reales de la API pública **DummyJSON** usando
 
 <div align="center">
 
-| Pestaña | Librería | Gráficos | Paquete |
-|:---:|:---|:---:|:---|
-| 📉 | **fl_chart** | `1 – 5` | [![pub](https://img.shields.io/badge/pub-fl__chart-02569B?logo=dart)](https://pub.dev/packages/fl_chart) |
-| 📊 | **Syncfusion** | `6 – 10` | [![pub](https://img.shields.io/badge/pub-syncfusion__flutter__charts-02569B?logo=dart)](https://pub.dev/packages/syncfusion_flutter_charts) |
-| 🍩 | **graphic** | `11 – 15` | [![pub](https://img.shields.io/badge/pub-graphic-02569B?logo=dart)](https://pub.dev/packages/graphic) |
-| 📶 | **community_charts** | `16 – 20` | [![pub](https://img.shields.io/badge/pub-community__charts__flutter-02569B?logo=dart)](https://pub.dev/packages/community_charts_flutter) |
+| Pestaña | Librería | Gráficos Básicos | Gráficos Avanzados | Total | Paquete |
+|:---:|:---|:---:|:---:|:---:|:---|
+| 📉 | **fl_chart** | `1 – 40` (40) | `41 – 65` (25) | **65** | [![pub](https://img.shields.io/badge/pub-fl__chart-02569B?logo=dart)](https://pub.dev/packages/fl_chart) |
+| 📊 | **Syncfusion** | `66 – 105` (40) | `106 – 130` (25) | **65** | [![pub](https://img.shields.io/badge/pub-syncfusion__flutter__charts-02569B?logo=dart)](https://pub.dev/packages/syncfusion_flutter_charts) |
+| 🍩 | **graphic** | `131 – 170` (40) | `171 – 195` (25) | **65** | [![pub](https://img.shields.io/badge/pub-graphic-02569B?logo=dart)](https://pub.dev/packages/graphic) |
+| 📶 | **community_charts** | `196 – 235` (40) | `236 – 260` (25) | **65** | [![pub](https://img.shields.io/badge/pub-community__charts__flutter-02569B?logo=dart)](https://pub.dev/packages/community_charts_flutter) |
+| **Total** | **4 Librerías** | **160 Básicos** | **100 Avanzados** | **260 Gráficos** | |
 
 </div>
 
@@ -71,15 +74,12 @@ Visualización de datos reales de la API pública **DummyJSON** usando
 # 1. Instalar dependencias
 flutter pub get
 
-# 2. Ejecutar (web, Android, Windows...)
+# 2. Ejecutar (web, Windows, Android...)
 flutter run -d chrome
 
-# 3. Correr las pruebas
+# 3. Correr las pruebas unitarias
 flutter test
 ```
-
-> [!TIP]
-> En Android, el permiso `INTERNET` ya está declarado en `AndroidManifest.xml`.
 
 ---
 
@@ -87,64 +87,44 @@ flutter test
 
 ```text
 lib/
-├── main.dart                       # MaterialApp y tema
+├── main.dart                               # MaterialApp y tema
 ├── models/
-│   ├── product.dart                # Product + fromJson
-│   ├── category_stat.dart          # Estadísticas por categoría
-│   ├── chart_data.dart             # ChartData + agregación por categoría
-│   └── models.dart                 # Exporta los modelos
+│   ├── product.dart                        # Product + fromJson + métricas derivadas
+│   ├── category_stat.dart                  # Estadísticas agregadas por categoría
+│   ├── chart_data.dart                     # ChartData + rangos y agrupaciones
+│   ├── chart_item.dart                     # Modelo lazy-load para renderizado óptimo
+│   └── models.dart                         # Exporta los modelos
 ├── services/
-│   └── api_service.dart            # Consumo de la API (http.Client inyectable)
+│   └── api_service.dart                    # Consumo de la API (http.Client inyectable)
 ├── theme/
-│   └── palette.dart                # Paleta de colores compartida
+│   └── palette.dart                        # Paleta compartida de colores
 ├── widgets/
-│   └── chart_card.dart             # Tarjeta: número, título, nivel y observación
+│   ├── chart_card.dart                     # Tarjeta: número, título, nivel y observación
+│   └── chart_list_view.dart                # Lista virtualizada con búsqueda y filtros
 └── pages/
-    ├── home_page.dart              # Pestañas, FutureBuilder y recarga
-    ├── fl_chart_page.dart          # Gráficos 1–5
-    ├── syncfusion_page.dart        # Gráficos 6–10
-    ├── graphic_page.dart           # Gráficos 11–15
-    └── community_charts_page.dart  # Gráficos 16–20
+    ├── home_page.dart                      # Pestañas principales y FutureBuilder
+    ├── pages.dart                          # Barrel export de todas las páginas
+    ├── fl_chart/                           # Librería 1 (65 gráficos)
+    │   ├── fl_chart_page.dart              # Vista principal de la pestaña
+    │   ├── fl_chart_basic.dart             # Gráficos 1 a 40 (Básicos)
+    │   ├── fl_chart_advanced.dart          # Gráficos 41 a 65 (Avanzados)
+    │   └── fl_chart_helpers.dart           # Ejes y leyendas compartidas
+    ├── syncfusion/                         # Librería 2 (65 gráficos)
+    │   ├── syncfusion_page.dart            # Vista principal de la pestaña
+    │   ├── syncfusion_basic.dart           # Gráficos 66 a 105 (Básicos)
+    │   └── syncfusion_advanced.dart        # Gráficos 106 a 130 (Avanzados)
+    ├── graphic/                            # Librería 3 (65 gráficos)
+    │   ├── graphic_page.dart               # Vista principal de la pestaña
+    │   ├── graphic_basic.dart              # Gráficos 131 a 170 (Básicos)
+    │   └── graphic_advanced.dart           # Gráficos 171 a 195 (Avanzados)
+    └── community_charts/                   # Librería 4 (65 gráficos)
+        ├── community_charts_page.dart      # Vista principal de la pestaña
+        ├── community_charts_basic.dart     # Gráficos 196 a 235 (Básicos)
+        ├── community_charts_advanced.dart  # Gráficos 236 a 260 (Avanzados)
+        └── community_charts_helpers.dart   # Adaptador de colores
 test/
-└── chart_data_test.dart            # Pruebas unitarias
+└── chart_data_test.dart                    # 8 pruebas unitarias y de widgets (valida los 260 gráficos)
 ```
-
-<details>
-<summary><b>🧱 ¿Qué hace cada capa?</b></summary>
-
-<br/>
-
-| Capa | Responsabilidad |
-|---|---|
-| `models/` | Clases de datos puras, sin dependencias de Flutter. |
-| `services/` | Comunicación HTTP con la API; el cliente se puede inyectar para pruebas. |
-| `theme/` | Colores compartidos por todos los gráficos. |
-| `widgets/` | Componentes visuales reutilizables. |
-| `pages/` | Pantallas: una por librería + la página principal con pestañas. |
-
-</details>
-
----
-
-## 🔄 Flujo de datos
-
-```mermaid
-flowchart LR
-    A[🌐 DummyJSON API] -->|HTTP GET| B[ApiService]
-    B -->|productos| C[ChartData.fromProducts]
-    C -->|agrega por categoría| D[HomePage<br/>FutureBuilder]
-    D --> E1[📉 fl_chart]
-    D --> E2[📊 Syncfusion]
-    D --> E3[🍩 graphic]
-    D --> E4[📶 community]
-```
-
-1. `HomePage` llama una sola vez a `ApiService().fetch()`.
-2. El servicio descarga los productos y construye `ChartData.fromProducts()`.
-3. Cada página recibe `ChartData` y dibuja sus gráficos dentro de `ChartCard`.
-
-> [!IMPORTANT]
-> No hay backend propio: la app funciona completamente en el cliente y consume una API REST pública.
 
 ---
 
@@ -156,10 +136,14 @@ flutter test
 
 | Prueba | Qué verifica |
 |---|---|
-| `Product.fromJson` | Conversión de números y título corto |
-| `ChartData` | Agrupación, promedios, stock y orden por cantidad |
-| `ApiService` (error) | Lanza excepción si la respuesta no es `200` |
-| `ApiService` (ok) | Parsea correctamente la respuesta de la API |
+| `Product.fromJson` | Conversión numérica, descuento y título corto. |
+| `ChartData` | Agrupación, promedios, valor de inventario y orden por cantidad. |
+| `ApiService` (error) | Lanza excepción controlada si HTTP status != 200. |
+| `ApiService` (ok) | Deserializa correctamente la lista de productos de la API. |
+| `260 Gráficos` | Verifica exactamente 40 básicos y 25 avanzados en cada una de las 4 librerías (260 únicos del 1 al 260). |
+| `Renderiza #245 y #259` | Verifica que las gráficas con leyendas de sectores no lancen null errors. |
+| `Widgets de 260 gráficos` | Construye widgets válidos para todas las 260 tarjetas sin excepciones. |
+| `ChartCard` | Renderiza limpiamente los campos de información en formato 2D sin distorsiones. |
 
 ---
 
