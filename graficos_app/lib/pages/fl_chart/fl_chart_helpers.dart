@@ -40,17 +40,18 @@ FlTitlesData flTitles({
 Widget flLegend(List<String> names, [List<Color>? colors]) {
   final cols = colors ?? palette;
   return Wrap(
-    spacing: 12,
+    spacing: 8,
     runSpacing: 4,
     alignment: WrapAlignment.center,
+    crossAxisAlignment: WrapCrossAlignment.center,
     children: [
       for (var i = 0; i < names.length; i++)
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.circle, size: 9, color: cols[i % cols.length]),
+            Icon(Icons.circle, size: 8, color: cols[i % cols.length]),
             const SizedBox(width: 4),
-            Text(names[i], style: const TextStyle(fontSize: 11)),
+            Text(names[i], style: const TextStyle(fontSize: 10.5)),
           ],
         ),
     ],

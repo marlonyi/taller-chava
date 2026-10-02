@@ -80,7 +80,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       title: 'Pastel: Proporción de productos por categoría (Top 5)',
       advanced: false,
       observation: 'Muestra la distribución relativa del número de artículos entre las 5 categorías más pobladas.',
-      builder: (context) => Row(
+      builder: (context) => Column(
         children: [
           Expanded(
             child: PieChart(
@@ -100,6 +100,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
               ),
             ),
           ),
+          const SizedBox(height: 6),
           flLegend(top5.map((c) => c.name).toList()),
         ],
       ),
@@ -169,7 +170,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       title: 'Dona: Distribución de unidades de inventario en Top 5',
       advanced: false,
       observation: 'El anillo resalta la cuota de inventario que acapara cada categoría destacada.',
-      builder: (context) => Row(
+      builder: (context) => Column(
         children: [
           Expanded(
             child: PieChart(
@@ -189,6 +190,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
               ),
             ),
           ),
+          const SizedBox(height: 6),
           flLegend(top5.map((c) => c.shortName).toList()),
         ],
       ),
@@ -288,7 +290,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       title: 'Pastel: Segmentación del catálogo por rango de precio',
       advanced: false,
       observation: 'Divide el catálogo en rangos de precio para entender la estrategia de precios de la tienda.',
-      builder: (context) => Row(
+      builder: (context) => Column(
         children: [
           Expanded(
             child: PieChart(
@@ -307,6 +309,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
               ),
             ),
           ),
+          const SizedBox(height: 6),
           flLegend(pBrackets.map((b) => b.label).toList()),
         ],
       ),
@@ -407,7 +410,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       title: 'Pastel: Segmentación de productos por nivel de rating',
       advanced: false,
       observation: 'Refleja la proporción de artículos calificados con excelente, regular o baja nota.',
-      builder: (context) => Row(
+      builder: (context) => Column(
         children: [
           Expanded(
             child: PieChart(
@@ -426,6 +429,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
               ),
             ),
           ),
+          const SizedBox(height: 6),
           flLegend(rBrackets.map((b) => b.label).toList()),
         ],
       ),
@@ -494,7 +498,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       title: 'Pastel: Salud del inventario (Crítico, Bajo, Medio, Alto)',
       advanced: false,
       observation: 'Detecta rápidamente el porcentaje de artículos que requieren reabastecimiento urgente.',
-      builder: (context) => Row(
+      builder: (context) => Column(
         children: [
           Expanded(
             child: PieChart(
@@ -513,6 +517,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
               ),
             ),
           ),
+          const SizedBox(height: 6),
           flLegend(sBrackets.map((b) => b.label).toList()),
         ],
       ),
@@ -585,7 +590,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       title: 'Dona: Distribución de artículos por nivel de descuento',
       advanced: false,
       observation: 'Permite identificar qué porcentaje de artículos tienen descuentos agresivos superiores al 15%.',
-      builder: (context) => Row(
+      builder: (context) => Column(
         children: [
           Expanded(
             child: PieChart(
@@ -605,6 +610,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
               ),
             ),
           ),
+          const SizedBox(height: 6),
           flLegend(dBrackets.map((b) => b.label).toList()),
         ],
       ),
@@ -675,7 +681,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       builder: (context) {
         final highCats = data.categories.where((c) => c.avgRating >= 4.0).length;
         final lowCats = data.categories.length - highCats;
-        return Row(
+        return Column(
           children: [
             Expanded(
               child: PieChart(
@@ -699,6 +705,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
                 ),
               ),
             ),
+            const SizedBox(height: 6),
             flLegend(['≥ 4.0 ★', '< 4.0 ★'], [palette[2], palette[3]]),
           ],
         );
@@ -770,7 +777,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       title: 'Pastel: Stock total según nivel de descuento',
       advanced: false,
       observation: 'Mide cuántas unidades físicas en stock tienen ofertas menores al 5% vs mayores al 15%.',
-      builder: (context) => Row(
+      builder: (context) => Column(
         children: [
           Expanded(
             child: PieChart(
@@ -789,6 +796,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
               ),
             ),
           ),
+          const SizedBox(height: 6),
           flLegend(dBrackets.map((b) => b.label).toList()),
         ],
       ),
@@ -862,7 +870,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       observation: 'Compara la cuota de inventario entre los 4 gigantes del almacén.',
       builder: (context) {
         final top4Stock = data.topByStock(4);
-        return Row(
+        return Column(
           children: [
             Expanded(
               child: PieChart(
@@ -880,6 +888,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
                 ),
               ),
             ),
+            const SizedBox(height: 6),
             flLegend(top4Stock.map((c) => c.shortName).toList()),
           ],
         );
@@ -954,7 +963,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       builder: (context) {
         final crit = products.where((p) => p.stock < 20).length;
         final rest = products.length - crit;
-        return Row(
+        return Column(
           children: [
             Expanded(
               child: PieChart(
@@ -978,6 +987,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
                 ),
               ),
             ),
+            const SizedBox(height: 6),
             flLegend(['Crítico (<20)', 'Normal (≥20)'], [palette[3], palette[0]]),
           ],
         );
@@ -1048,7 +1058,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       observation: 'Determina qué categorías representan el grueso de la inversión en inventario.',
       builder: (context) {
         final topVal = data.topByValue(3);
-        return Row(
+        return Column(
           children: [
             Expanded(
               child: PieChart(
@@ -1066,6 +1076,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
                 ),
               ),
             ),
+            const SizedBox(height: 6),
             flLegend(topVal.map((c) => c.shortName).toList()),
           ],
         );
@@ -1141,7 +1152,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
       builder: (context) {
         final exc = products.where((p) => p.rating >= 4.5).length;
         final oth = products.length - exc;
-        return Row(
+        return Column(
           children: [
             Expanded(
               child: PieChart(
@@ -1165,6 +1176,7 @@ List<ChartItem> getFlChartBasicItems(ChartData data) {
                 ),
               ),
             ),
+            const SizedBox(height: 6),
             flLegend(['Excelente (≥ 4.5)', 'Otros (< 4.5)'], [palette[2], palette[4]]),
           ],
         );
